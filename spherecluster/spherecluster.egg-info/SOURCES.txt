@@ -1,0 +1,14 @@
+MANIFEST.in
+README.md
+requirements.txt
+setup.cfg
+setup.py
+spherecluster/__init__.py
+spherecluster/spherical_kmeans.py
+spherecluster/util.py
+spherecluster/von_mises_fisher_mixture.py
+spherecluster.egg-info/PKG-INFO
+spherecluster.egg-info/SOURCES.txt
+spherecluster.egg-info/dependency_links.txt
+spherecluster.egg-info/requires.txt
+spherecluster.egg-info/top_level.txt

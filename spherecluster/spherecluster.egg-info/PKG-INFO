@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: spherecluster
+Version: 0.1.7
+Summary: Clustering on the unit hypersphere in scikit-learn.
+Home-page: https://github.com/clara-labs/spherecluster
+Author: Jason Laska
+Author-email: jason@claralabs.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN

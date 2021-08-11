@@ -1,0 +1,15 @@
+#__pycache__/
+background/
+database/
+facescrub_images/
+identity_CelebA.txt
+render-output/
+testsource/
+trash/
+faces_database/
+img_align_celeba/
+img_align_celeba.zip
+*.mp4
+*.png
+*.jpg
+*.pth
