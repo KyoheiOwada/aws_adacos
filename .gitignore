@@ -13,3 +13,5 @@ img_align_celeba.zip
 *.png
 *.jpg
 *.pth
+*.csv
+
