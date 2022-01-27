@@ -88,9 +88,9 @@ class CNN(nn.Module):
     self.resnet = models.wide_resnet101_2(pretrained=True)
     #self.resnet = torch.nn.Sequential(*(list(resnet.children())[:-1]))
     print(self.resnet.fc)
-    self.resnet.fc = nn.Linear(2048, 1024)
+    self.resnet.fc = nn.Linear(2048, 4096)
     #self.ArcFace_layer = ArcMarginProduct(1024, 2360, easy_margin=True)
-    self.Adacos_layer = AdaCos(1024, 2360)
+    self.Adacos_layer = AdaCos(4096, 16758)
     #print(self.resnet)
 
   def forward(self, x, y):
@@ -115,8 +115,8 @@ if __name__ == '__main__':
 
 
   #for i, fname in enumerate(glob.glob("./dataset_csv/*.csv")):
-  input_file_path = './utils/train.csv'
-  val_file_path = './utils/val.csv'
+  input_file_path = './train.csv'
+  val_file_path = './val.csv'
   imgDataset = my_dataset.MyDataset(input_file_path,
                                     transform=transforms.Compose([transforms.RandomResizedCrop(224, scale=(0.8, 1.2)),
                                     transforms.RandomHorizontalFlip(),
@@ -131,8 +131,8 @@ if __name__ == '__main__':
   # load imagesi
   print("loading images...")
   #train_data, test_data = train_test_split(imgDataset, test_size=0)
-  train_loader = torch.utils.data.DataLoader(imgDataset, batch_size=32, shuffle=True, num_workers=0, pin_memory=True)
-  val_loader = torch.utils.data.DataLoader(val_data, batch_size=1, shuffle=False,num_workers=0, pin_memory=True)
+  train_loader = torch.utils.data.DataLoader(imgDataset, batch_size=512, shuffle=True, num_workers=0, pin_memory=True)
+  #val_loader = torch.utils.data.DataLoader(val_data, batch_size=32, shuffle=False,num_workers=0, pin_memory=True)
 
   #GPU = True
   #device = torch.device("cuda" if GPU else "cpu")
@@ -140,7 +140,7 @@ if __name__ == '__main__':
   #net = CNN()
   print("loading_the model")
   #print(torch.load('model_weight.pth'))
-  net.load_state_dict(torch.load('model_weight/adacos_weight1.pth'))
+  net.load_state_dict(torch.load('./model_weight/adacos_weight1.pth'))
   
   print(net)
   #net = net.to(device)
@@ -149,10 +149,11 @@ if __name__ == '__main__':
 
   #net.train()
   for epoch in range(1, 500+1):
-    torch.save(net.state_dict(), "./model_weight/adacos_weight1.pth")
+    torch.save(net.state_dict(), "./model_weight/adacos_weight2.pth")
     print('saved the model.')
     net.train()
     for batch_idx, (image, label) in enumerate(train_loader):
+      print("iteration:", batch_idx)
       optimizer.zero_grad()
       image, label = Variable(image).cuda(0), Variable(label).cuda(0)
       optimizer.zero_grad()
@@ -163,7 +164,7 @@ if __name__ == '__main__':
       optimizer.step()
 
       print('epoch: {}\t Loss: {}'.format(epoch , loss.data))
-
+    """
     test_loss = 0
     correct = 0
     net.eval()
@@ -184,5 +185,6 @@ if __name__ == '__main__':
 
     if (100. * correct / len(val_loader.dataset)) > 90:
       break
+    """
   print("training has been done.\n")
-  torch.save(net.state_dict(), "./model_weight/adacos_weight1.pth")
+  torch.save(net.state_dict(), "./model_weight/adacos_weight2.pth")
