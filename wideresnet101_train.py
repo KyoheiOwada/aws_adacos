@@ -113,6 +113,9 @@ if __name__ == '__main__':
   mean = (0.485, 0.456, 0.406)
   std = (0.229, 0.224, 0.225)
 
+  print("load model weight\n")
+  net.load_state_dict(torch.load('./model_weight/adacos_weight2.pth'))
+  print("load compleated\n")
 
   #for i, fname in enumerate(glob.glob("./dataset_csv/*.csv")):
   input_file_path = './train.csv'
