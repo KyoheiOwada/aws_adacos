@@ -8,8 +8,8 @@ import skimage
 from torchvision import transforms
 from PIL import Image
 
-LABEL_IDX = 1
-IMG_IDX = 0
+LABEL_IDX = 2
+IMG_IDX = 1
 
 class MyDataset(Dataset):
 
