@@ -14,4 +14,4 @@ img_align_celeba.zip
 *.jpg
 *.pth
 *.csv
-
+*.npy
