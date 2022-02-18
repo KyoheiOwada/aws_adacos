@@ -69,8 +69,8 @@ class CNN(nn.Module):
     return fv, x
 
 if __name__=='__main__':
-  db_file_path = 'csvfiles/detection_db.csv'
-  pred_file_path = 'csvfile/detection_val.csv'
+  db_file_path = 'detection_db.csv'
+  pred_file_path = 'detection_val.csv'
   ROOT_DIR = ""
   mini_batch = 1
   out_feature = 4096
